@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+</head>
+<body>
+ <div id="container">
+  <h1>CURRENCY CONVERTER</h1>  
+    <input type="number" name="" id="amount" placeholder="ENTER AMOUNT">
+    <br> <br>
+    <span>FROM:</span>
+    <select id="fromCurrency">
+        <option value="">SELECT ONE</option>
+        <option value="USD">United States Dollar</option>
+        <option value="Pound">Pound Sterling</option>
+        <option value="AUD">Australian Dollar</option>
+        <option value="PKR">Pakistan Rupees</option>
+        <option value="CAD">Canadian Dollar</option>
+    </select>
+    <br>
+    <span>TO:</span>
+    <select id="toCurrency">
+        <option value="">SELECT ONE</option>
+        <option value="USD">United States Dollar</option>
+        <option value="Pound">Pound Sterling</option>
+        <option value="AUD">Australian Dollar</option>
+        <option value="PKR">Pakistan Rupees</option>
+        <option value="CAD">Canadian Dollar</option>
+    </select>
+    <button onclick="Converter()">Convert</button>
+    <p id="result"></p>
+ </div>
+<style>
+ #container{
+    width: 30rem;
+    border-radius: 0.8rem;
+    background-color:beige;
+    margin: auto;
+    margin-top: 9rem;
+    border-color:darkgreen;
+    border: 4px solid black;
+}
+h1{
+    text-align: center;
+    font-family:Arial, Helvetica, sans-serif
+}
+#amount{
+    width: 23rem;
+    height: 2rem;
+    border-radius: 5rem;
+    margin-left: 2rem;
+    text-align: center;
+    font-size: 1rem;
+    background-color: antiquewhite;
+    color: rgb(2, 2, 19);
+    font-weight: bolder;
+}
+span{
+    font-size: 1.5rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-left: 1rem;
+}
+#fromCurrency,#toCurrency{
+    width: 15rem;
+    height: 2rem;
+    font-size: 1.1rem;
+    margin-left: 2rem;
+    border-radius: 0.8rem;
+    background-color: antiquewhite;
+}
+#toCurrency{
+    margin-left: 4rem;
+    margin-top: 1rem;
+}
+button{
+    width: 6rem;
+    height: 2rem;
+    border-radius: 1rem;
+    margin-left: 23rem;
+    background-color: antiquewhite;
+    font-size: 1rem;
+    color: black;
+}
+#result{
+    margin-left: 10rem;
+    font-size: 2rem;
+    font-weight: bold;
+}
+</style> 
+<script>
+function Converter()
+{
+var input=parseFloat(document.getElementById('amount').value)
+var fromCurrency=document.getElementById("fromCurrency").value
+var toCurrency=document.getElementById("toCurrency").value
+var CurrencyRates={
+USD:{
+Pound:0.82,
+AUD:1.56,
+PKR:285.72,
+CAD:1.36
+},
+Pound:{
+AUD:1.90,
+PKR:352.95,
+CAD:1.66,
+USD:1.22
+},
+AUD:{
+USD:0.64,
+Pound:0.53,
+PKR:186.01,
+CAD:0.87
+},
+PKR:{
+USD:0.0035,
+Pound:0.0028,
+AUD:0.0054,
+CAD:0.0047
+},
+CAD:{
+USD:0.74,
+Pound:0.60,
+AUD:1.14,
+PKR:212.92
+}
+}
+var convertedAmt=input*CurrencyRates[fromCurrency][toCurrency]
+document.getElementById('result').innerText=convertedAmt.toFixed(4)+" "+toCurrency
+}
+</script>    
+</body>
+</html>
